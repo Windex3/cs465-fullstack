@@ -12,5 +12,5 @@ image: { type: String, required: true },
 description: { type: String, required: true } 
 }); 
 
-const Trip = mongoose.model('trips', tripSchema); 
+const Trip = mongoose.model('Trip', tripSchema); 
 module.exports = Trip; 
