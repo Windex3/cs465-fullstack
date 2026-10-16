@@ -1,13 +1,14 @@
 import { Component, OnInit, ChangeDetectorRef, signal } from '@angular/core';
-import {NgFor} from '@angular/common';
+import {NgFor, CommonModule} from '@angular/common';
 import {TripCard} from '../trip-card/trip-card';
 import {Trip} from '../models/trip';
 import {TripData} from '../services/trip-data';
 import {Router} from '@angular/router';
+import { AuthenticationService } from '../services/authentication';
 
 
 @Component({
-  imports: [NgFor, TripCard],
+  imports: [NgFor, TripCard, CommonModule],
   selector: 'app-trip-listing',
   styleUrl: './trip-listing.css',
   templateUrl: './trip-listing.html',
@@ -20,7 +21,8 @@ export class TripListing implements OnInit {
   constructor(
     private tripDataService: TripData,
     private router: Router,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private authenticationService: AuthenticationService
   ){
     console.log
   }
@@ -54,4 +56,9 @@ export class TripListing implements OnInit {
     }
   })
   }
+
+  public isLoggedIn() 
+  { 
+    return this.authenticationService.isLoggedIn(); 
+  } 
 }
